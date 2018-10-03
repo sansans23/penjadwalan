@@ -18,7 +18,7 @@ body{
 
 	color: #fff;
 	font-family: Arial;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .body{
@@ -69,8 +69,8 @@ body{
 
 .login{
 	position: absolute;
-	top: calc(50% - 75px);
-	left: calc(25% - 50px);
+	top: calc(55% - 75px);
+	left: calc(15% - 50px);
 	height: 350px;
 	width: 350px;
 	padding: 10px;
@@ -91,7 +91,7 @@ body{
 }
 
 .login input[type=password]{
-	width: 150px;
+	width: 140px;
 	height: 10px;
 	background: #fff;
 	border: 1px solid rgba(255,255,255,0.6);
@@ -106,7 +106,7 @@ body{
 
 .login input[type=button]{
 	width: 300px;
-	height: 35px;
+	height: 30px;
 	background: #fff;
 	border: 1px solid #fff;
 	cursor: pointer;

@@ -41,6 +41,9 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 		Route::get('schedule','ScheduleController@index');
 		Route::get('schedule/get-calendar','ScheduleController@getCalendar')->name('get-calendar');
 		Route::get('staff','StaffController@index')->name('staff');
+		Route::get('create','StaffController@create');
+		Route::resource('kehadiran','KehadiranController');
+		Route::get('rekap','KehadiranController@rekap');
 		
 		// JOB
 		Route::get('job','JobController@index');
@@ -65,6 +68,8 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 			Route::get('create','AdminController@create');
 			Route::post('store','AdminController@store');
 			Route::get('show','AdminController@show');
+
+		Route::get('edit','StaffController@edit');
 
 		});
 

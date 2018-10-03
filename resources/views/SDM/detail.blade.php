@@ -22,7 +22,7 @@
 									</td>
 								</thead>
 								<tbody>
-									@foreach ($users as $index => $value)
+									{{-- @foreach ($users as $index => $value)
 									<td>
 										<tr>{{ $value->name }}</tr>
 										<tr>{{ $value->pekerjaan }}</tr>
@@ -31,7 +31,7 @@
 										<tr>{{ $value->email }}</tr>
 										<tr>{{ $value->address }}</tr>
 									</td>
-									@endforeach
+									@endforeach --}}
 								</tbody>
 							</div>
 							

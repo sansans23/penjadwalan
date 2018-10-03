@@ -58,7 +58,22 @@
 							<div class="col-md-6">
 								<input id="address" type="text" class="form-control" name="address">
 							</div>
-						</div>		
+						</div>	
+
+						<div>
+							<label for="kelompok_hari" class="col-md-4 control-label">Hari kerja</label>
+
+							<div class="col-md-6">
+								<select class="form-control" name="kelompok_hari">
+									<option value="1">Senin</option>
+									<option value="2">Selasa</option>
+									<option value="3">Rabu</option>
+									<option value="4">Kamis</option>
+									<option value="5">Jumat</option>
+									<option value="6">Sabtu</option>
+								</select>								
+							</div>
+						</div>	<br>
 
 						<h3>Data Login</h3>
 

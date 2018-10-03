@@ -16,8 +16,8 @@ class SDMController extends Controller
      */
     public function index()
     {
-        $data['sdm']=Sdm::all();
-        // dd($data['sdm']);
+        $data['sdms'] = Sdm::with('job')->with('user')->get();
+        // dd($data);
         return view('SDM.index', $data);
     }
 
@@ -61,6 +61,7 @@ class SDMController extends Controller
         $sdm->user_id = $user->id;
         $sdm->name = $user->name;
         $sdm->pekerjaan_id = $request->pekerjaan_id;
+        $sdm->kelompok_hari = $request->kelompok_hari;
         // terusin
         $sdm->save();
 

@@ -23,7 +23,7 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1> --}}
 
     <div class="container">
-      <a href="{{url('admin/staff/create')}}"><button type="button" class="btn btn-success">Insert new Staff</button></a><hr>
+      <a href="{{url('admin/staff/create')}}"><button type="button" class="btn btn-success">Tambah Pegawai</button></a><hr>
 
     <div class="panel panel-default">
       <div class="panel-heading">

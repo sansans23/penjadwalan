@@ -10,7 +10,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="{{ route('sdm.store') }}" method="post">
+						<form class="form-horizontal" action="{{ route('user.store') }}" method="post">
 
 						<h3>Data Pribadi</h3>
 						<div class="form-group">
@@ -26,10 +26,10 @@
 							{{-- tampilkan list pekerjaan di sini --}}
 							<div class="col-md-6">
 								<select class="form-control" name="pekerjaan_id">
-									{{-- @foreach($job as $index=>$pkj)
+									@foreach($job as $index=>$pkj)
 										<option value="{{$pkj->id}}">{{$pkj->name}}</option>
 									@endforeach
- --}}
+
 								</select>
 							</div>
 						</div>

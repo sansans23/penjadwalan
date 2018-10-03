@@ -25,15 +25,17 @@
               </tr>
           </thead>
           <tbody>
-            @foreach ($sdm as $index => $iki)
+            @foreach ($sdms as $s => $sdm)
             <tr>
-              <td>{{ $index+1 }}</td>
-              <td>{{ $iki->name }}</td>
-              <td>{{ $iki->pekerjaan_id }}</td>
+              <td>{{ $s+1 }}</td>
+              <td>{{ $sdm->name }}</td>
+              {{-- <td>{{ $iki->pekerjaan_id }}</td> --}}
+              <td>{{ $sdm->job->name }}</td>
+
               <td>
-                <a href="{{ route('sdm.show',$iki->id) }}" type="button" class="btn btn-info">Detail</a>
-                <a href="{{ route('sdm.edit',$iki->id) }}" type="button" class="btn btn-warning">Edit</a>
-                <button type="button" class="btn btn-danger" onclick="delete_data('{{$iki->id}}')">Delete</button>
+                {{-- <a href="{{ route('sdm.show',$iki->id) }}" type="button" class="btn btn-info">Detail</a> --}}
+                <a href="{{ route('sdm.edit',$sdm->id) }}" type="button" class="btn btn-warning">Edit</a>
+                <button type="button" class="btn btn-danger" onclick="delete_data('{{$sdm->id}}')">Delete</button>
               </td>
             </tr>
             @endforeach

@@ -31,7 +31,7 @@
             width:100%;
             height:100%;
     /*        background-image: url("bunga1.png")*/;
-            background-color:#f0f8ff;
+            background-color:#ffff;
             font-family: 'Sansita', sans-serif;
         }
     </style>
@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a href="{{ url('admin') }}" class="navbar-brand" href="index.html">
 
                     <img src="{{asset('img/logo/logo1.png')}}" />
                 </a>
@@ -73,6 +73,7 @@
                             <li><a href="{{url('admin/sdm')}}"  ><i class="fa fa-users"></i> Mnj.SDM </a></li>
                             <li><a href="{{url('admin/harikerja')}}" ><i class="fa fa-clipboard"></i> Mnj.Hari kerja </a></li>
                             <li><a href="{{url('admin/schedule')}}" ><i class="fa fa-calendar"></i> Penjadwalan </a></li>
+                            <li><a href="{{url('admin/kehadiran')}}" ><i class="fa fa-calendar"></i> Kehadiran </a></li>
                             {{-- <li><a href="{{url('admin/sdm')}}" ><i class="fa fa-archive"></i> Rekapitulasi </a></li> --}}
                             <li><a href="{{url('admin/staff')}}" ><i class="fa fa-child"></i> User </a></li>
                         </ul>                            <!-- /.dropdown -->

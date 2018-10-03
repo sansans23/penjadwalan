@@ -13,4 +13,14 @@ class Hari_kerja extends Model
     {
     	return $this->hasMany('App\Hari_sdm');
     }
+
+    public function Sdm()
+    {
+    	return $this->belongsToMany('App\Sdm','hari_sdms','id_sdm','id_hari_kerja');
+    }
+
+    public function HariSdm()
+    {
+        return $this->hasMany('App\HariSdm','id_hari_kerja');
+    }
 }

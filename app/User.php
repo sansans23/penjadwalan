@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\User;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -36,6 +37,11 @@ class User extends Authenticatable
     public function Sdm()
     {
         return $this->hasOne('App\Sdm');
+    }
+
+    public function Hari_sdm()
+    {
+        return $this->hasOne('App\Hari_sdm');
     }
     
 }

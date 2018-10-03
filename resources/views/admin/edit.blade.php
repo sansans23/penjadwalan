@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<a href="{{url('admin/staff') }}"><button type="button" class="btn btn-success">Back to staff</button></a><hr>
+			<a href="{{url('admin/staff') }}"><button type="button" class="btn btn-success">Back to User</button></a><hr>
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
@@ -17,22 +17,6 @@
 
 						<div class="col-md-6">
 							<input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="email" class="col-md-4 control-label">Email</label>
-
-						<div class="col-md-6">
-							<input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="password" class="col-md-4 control-label">Password</label>
-
-						<div class="col-md-6">
-							<input id="password" type="password" class="form-control" name="password">
 						</div>
 					</div>
 
@@ -59,9 +43,29 @@
 						<label for="address" class="col-md-4 control-label">Address</label>
 
 						<div class="col-md-6">
-							<input id="address" type="text" class="form-control" name="address" value="{{ $user->biodata->address }}">
+							<input id="address" type="text" class="form-control" name="address" value="{{ $user->address }}">
 						</div>
-					</div>		
+					</div>	
+
+					<h3>Data Login</h3>
+
+					
+					<div class="form-group">
+						<label for="email" class="col-md-4 control-label">Email</label>
+
+						<div class="col-md-6">
+							<input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="col-md-4 control-label">Password</label>
+
+						<div class="col-md-6">
+							<input id="password" type="password" class="form-control" name="password">
+						</div>
+					</div>
+
 
 					<input type="hidden" name="id" value="{{ $user->id }}">
 

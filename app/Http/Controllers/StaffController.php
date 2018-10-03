@@ -12,17 +12,16 @@ class StaffController extends Controller
         $data["user"] = User::all();
     	return view('staff.index',$data);
     }
-    //  public function index(){
-    //  	// return "yey";
-    //  	// $data["user"]= User::join('biodata','users.id','=','biodata.user_id')->get();
-    //  	$data["user"] = User::with('biodata')->get();
-    //  	// dd($data);
-    // 	return view('staff.index',$data);
-    // }
-    // public function show($id){
-    // 	$data["biodata"]=Biodata::get();
-    // 	// dd($data);
-    // 	return view('staff.index',$data);
-    // }
+
+    public function create(){
+        $data["user"] = User::all();
+        return view('staff.create',$data);
+    }
+
+    public function edit(){
+        $data["user"] = User::where('id',$id)->first();
+        return view('staff.edit',$data);
+    }
+
 }
 

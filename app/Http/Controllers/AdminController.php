@@ -39,11 +39,7 @@ class AdminController extends Controller
             "role_id" => 2,
             "name" => $request["name"],
             "email" => $request["email"],
-            "password" => bcrypt($request["password"])
-        ]);
-
-        $db["biodata"] = Biodata::create([
-            "user_id" => $db["user"]->id,
+            "password" => bcrypt($request["password"]),
             "birth" => $request["birth"],
             "address" => $request["address"],
             "gender" => $request["gender"]
@@ -60,22 +56,20 @@ class AdminController extends Controller
     }
 
     public function edit(Request $request){
-        $data["user"] = User::with('biodata')->where('id',$request["id"])->first();
+        $data["user"] = User::where('id',$request["id"])->first();
 
         return view('admin.edit',$data);
     }
 
     public function update(Request $request){
         $db["user"] = User::where('id',$request["id"])->update([
-            "name"=>$request["name"],
+            "name"=> $request["name"],
             "email" => $request["email"],
-            "password" => bcrypt($request["password"])
-        ]);
+            "password" => bcrypt($request["password"]),
+            "birth" => $request["birth"],
+            "address" => $request["address"],
+            "gender" => $request["gender"]
 
-        $db["biodata"] = Biodata::where('user_id',$request["id"])->update([
-            "birth"=>$request["birth"],
-            "gender"=>$request["gender"],
-            "address"=>$request["address"]
         ]);
 
         return redirect('admin/staff');
@@ -83,7 +77,7 @@ class AdminController extends Controller
 
     public function show(Request $request){
         // dd($request);
-        $data["user"] = User::with('biodata')->where('id',$request["id"])->first();
+        $data["user"] = User::where('id',$request["id"])->first();
 
         return view('admin.show',$data);
     }

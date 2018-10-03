@@ -51,7 +51,7 @@
 		$("#calendar").fullCalendar({
 			defaultDate: moment('{{$_GET['tahun']}}-{{$_GET['bulan']}}-01'),
 		    events: "{{ route('get-calendar') }}?tahun={{$_GET['tahun']}}&bulan={{$_GET['bulan']}}&pekerjaan={{$_GET['pekerjaan']}}",
-		    color: 'yellow',   // an option!
+		    color: 'red',   // an option!
   			textColor: 'black' // an option!
 		});
 		</script>
