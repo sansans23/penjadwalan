@@ -77,7 +77,10 @@ class KehadiranController extends Controller
         // $data['user']=User::with('sdm')->with('hari_sdm')->get();
 
         // return view('kehadiran.show',$data);
-        $data['sdms'] = Sdm::all();
+        $data['sdms'] = Sdm::withCount(['Hari_sdm'  => function($q) {
+                                $q->where('kehadiran', '=', 1); // '=' is optional
+                            }])
+                            ->get();
         // $count = Hari_sdm::where('kehadiran','=','1')->count();
 
         return view('kehadiran.show',$data);

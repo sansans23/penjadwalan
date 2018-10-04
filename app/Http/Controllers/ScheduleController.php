@@ -44,6 +44,7 @@ class ScheduleController extends Controller
                     'id'    =>  $item->id,
                     'title' =>  $item->sdm->name,
                     'start' =>  $start,
+                    'color' =>  'blue',
                 ];        
             });
 

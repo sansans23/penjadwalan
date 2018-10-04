@@ -27,7 +27,7 @@ class Sdm extends Model
 
     public function Hari_sdm()
     {
-    	return $this->hasMany('App\Hari_sdm','kehadiran');
+    	return $this->hasMany('App\Hari_sdm','id_sdm');
     }
 
     public function HariKerja()

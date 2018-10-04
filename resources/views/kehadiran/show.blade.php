@@ -25,7 +25,7 @@
 									{{$sdm->name}}
 								</td>
 								<td>
-									{{$sdm->kehadiran}}
+									{{$sdm->hari_sdm_count}}
 								</td>
 							</tr>
 						@endforeach
