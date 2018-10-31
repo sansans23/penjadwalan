@@ -1,6 +1,6 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
-@section('login')
+@section('content')
 <div class="container">
 {{--     <img src="images/back.jpg" --}}
     <div class="row justify-content-center">
