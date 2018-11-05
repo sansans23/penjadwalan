@@ -70,8 +70,11 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 			Route::get('show','AdminController@show');
 
 		Route::get('edit','StaffController@edit');
-
 		});
+
+		//Penggajian
+		Route::get('gaji','GajiController@index')->name('gaji');
+		Route::get('gaji/show_generate','GajiController@index')->name('gaji.show_generate');
 
 	});
 

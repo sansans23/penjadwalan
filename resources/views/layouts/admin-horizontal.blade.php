@@ -22,6 +22,7 @@
     {{-- full calendar --}}
     <link rel='stylesheet' href='{{asset('fullcalendar/fullcalendar.css')}}' />
     {{-- datepicker css --}}
+    <link rel="stylesheet" href="{{asset('css/datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}">
     <!-- Bootstrap datepicker -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
@@ -74,6 +75,7 @@
                             <li><a href="{{url('admin/harikerja')}}" ><i class="fa fa-clipboard"></i> Mnj.Hari kerja </a></li>
                             <li><a href="{{url('admin/schedule')}}" ><i class="fa fa-calendar"></i> Penjadwalan </a></li>
                             <li><a href="{{url('admin/kehadiran')}}" ><i class="fa fa-check-square-o"></i> Kehadiran </a></li>
+                            <li><a href="{{route('gaji')}}" ><i class="fa fa-money"></i> Gaji Pekerja </a></li>
                             {{-- <li><a href="{{url('admin/sdm')}}" ><i class="fa fa-archive"></i> Rekapitulasi </a></li> --}}
                             <li><a href="{{url('admin/staff')}}" ><i class="fa fa-child"></i> User </a></li>
                         </ul>                            <!-- /.dropdown -->
@@ -125,7 +127,7 @@
     <script src="{{asset('fullcalendar/lib/moment.min.js')}}"></script>
     <script src="{{asset('fullcalendar/fullcalendar.min.js')}}"></script>
     <script src="{{asset('fullcalendar/locale/id.js')}}"></script>
-    <script src="{{asset('js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+    <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
