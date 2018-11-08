@@ -18,10 +18,10 @@ class ScheduleController extends Controller
     	return view('schedule.index',$data);
      }
 
-    public function getCalendar()
+    public function getCalendar()   // [1]
     {
-        if(empty($_GET['tahun']) || empty($_GET['bulan']) || empty($_GET['pekerjaan']))
-            return response()->json([]);
+        if(empty($_GET['tahun']) || empty($_GET['bulan']) || empty($_GET['pekerjaan'])) // [2]
+            return response()->json([]);    // [3]
 
         // CEK JADWAL UNTUK TAHUN DAN BULAN YANG DIINGINKAN
         $cekJadwal = HariSdm::whereHas('HariKerja',function($query){
@@ -31,10 +31,11 @@ class ScheduleController extends Controller
                     ->with('Sdm')
                     ->get();
         
-        if(count($cekJadwal) > 1) {
+        if(count($cekJadwal) > 1) { // [4]
             // apabila jadwal sudah terbuat sebelumnya
 
-            $cekJadwal->transform(function($item,$key){
+            // Ambil & return penjadwalan [5]
+            $cekJadwal->transform(function($item,$key){ // 
                 $bulan = str_pad($item->harikerja->bulan, 2, 0,STR_PAD_LEFT);
                 $tanggal = str_pad($item->harikerja->tanggal, 2, 0,STR_PAD_LEFT);
                 $tahun = $item->harikerja->tahun;
@@ -48,12 +49,12 @@ class ScheduleController extends Controller
                 ];        
             });
 
-            return response()->json($cekJadwal);
+            return response()->json($cekJadwal);    // 
 
-
-        } else
-        {
+        } else {
             // apabila jadwal belum ada
+            // 
+            // Ambil Data dari database & tambahkan durasi untuk diproses [6]
 
             // GET DATA HARI KERJA
             $harikerja = Hari_kerja::where("tahun",$_GET['tahun'])
@@ -65,26 +66,29 @@ class ScheduleController extends Controller
             
             // #START# DATA POKOK PEKERJA PER HARI ( BENTUKNYA LARAVEL COLLECTION )
             $data_pekerja = [];
-            foreach ($pekerja as $key => $value) {
-                $temp = $value->toArray();
+            foreach ($pekerja as $key => $value) { 
+                $temp = $value->toArray();  
                 $temp['durasi_kerja'] = 0;
                 $data_pekerja[] = (object) $temp;
             }
-            $data_pekerja = collect($data_pekerja);
+            $data_pekerja = collect($data_pekerja); 
             // #END# DATA POKOK PEKERJA PER HARI ( BENTUKNYA LARAVEL COLLECTION )
             
             // AMBIL BEBERPA PEKERJA DARI DATA POKOK BERDASARKAN HARI KERJA
-            foreach ($harikerja as $key => $value) {
+            foreach ($harikerja as $key => $value) { // [7]
+                // 
+                // Ambil Data pekerja untuk setiap pekerja berdasarkan hari [8]
+                // 
                 $value = (object) $value;
-                $hari = date('N',strtotime($value->tanggal.'-'.$value->bulan.'-'.$value->tahun));
+                $hari = date('N',strtotime($value->tanggal.'-'.$value->bulan.'-'.$value->tahun));   
 
                 // #START# GET RANDOM FROM PEKERJA DENGAN HARI TERTENTU
                 
                 // get pekerja sesuai kuota
-                $harikerja[$key]['pekerja'] = $this->getPekerjaByHariKerja($data_pekerja, $hari, $value->kuota)->toArray();
+                $harikerja[$key]['pekerja'] = $this->getPekerjaByHariKerja($data_pekerja, $hari, $value->kuota)->toArray(); // [16]
                 // tambahkan durasi ke masing-masing pekerja
-                foreach ($harikerja[$key]['pekerja'] as $index => $pekerja) {
-                    $data_pekerja[$index]->durasi_kerja += 1;
+                foreach ($harikerja[$key]['pekerja'] as $index => $pekerja) { 
+                    $data_pekerja[$index]->durasi_kerja += 1;  
                 }
                 // masukkan data pekerja ke dalam hari kerja
 
@@ -92,6 +96,8 @@ class ScheduleController extends Controller
             }
 
             $harikerja = collect($harikerja);
+
+            // Tambahkan hari kerja pada data yang telah dibuat [9]
 
             $insert_data = [];
             foreach ($harikerja as $hari) {
@@ -103,7 +109,7 @@ class ScheduleController extends Controller
             // HariSdm::insert($insert_data);
             $jadwal = [];
 
-            foreach ($harikerja as $key => $item) {
+            foreach ($harikerja as $key => $item) { // [10]
                 $bulan = str_pad($item['bulan'], 2, 0,STR_PAD_LEFT);
                 $tanggal = str_pad($item['tanggal'], 2, 0,STR_PAD_LEFT);
                 $hari = date('N',strtotime($item['tanggal'].'-'.$item['bulan'].'-'.$item['tahun']));
@@ -116,14 +122,15 @@ class ScheduleController extends Controller
                 }
 
                 // cari yang tidak kerja
-                if ($hari != 7) {
-                    $menganggur = $this->getMenganggurByHariKerja($data_pekerja,$hari,$yang_bekerja);
+                if ($hari != 7) {   // [11]
+                    $menganggur = $this->getMenganggurByHariKerja($data_pekerja,$hari,$yang_bekerja);   // Ambil Data Pekerja menganggur pada hari tsb [12]
                     $title_nganggur = "";
                     foreach ($menganggur as $key2 => $pekerja2) {
                         $title_nganggur .= $pekerja2->name." \n";
                     }
 
-                    if(count($menganggur) > 0) {
+                    if(count($menganggur) > 0) {    // [13]
+                        // [14]
                         $jadwal[] = [
                                 'id'    =>  0,
                                 'title' =>  $title_nganggur,
@@ -133,7 +140,7 @@ class ScheduleController extends Controller
                     }
                 }
 
-                $jadwal[] = [
+                $jadwal[] = [   // [15]
                     'id'    =>$key,
                     'title' => $title,
                     "start" =>  $start,
@@ -145,7 +152,7 @@ class ScheduleController extends Controller
             
         }
 
-    	return response()->json($jadwal);
+    	return response()->json($jadwal);  // [16]
     }
 
     public function admin(){
