@@ -110,5 +110,9 @@
 </div>
 @endsection
 @section('script')
-
+<script type="text/javascript">
+	$(document).ready( function () {
+		if ( $('#birth')[0].type != 'date' ) $('#birth').datepicker();
+	} );
+</script>
 @endsection

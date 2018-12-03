@@ -15,12 +15,15 @@
       </div>
       <div class="panel-body">
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="sdmTable">
             <thead>
               <tr>
                 <th>No.</th>
                 <th>Name</th>
                 <th>Pekerjaan</th>
+                <th>Gender</th>
+                <th>Birth</th>
+                <th>Address</th>
                 <th>Action</th>
               </tr>
           </thead>
@@ -31,6 +34,9 @@
               <td>{{ $sdm->name }}</td>
               {{-- <td>{{ $iki->pekerjaan_id }}</td> --}}
               <td>{{ $sdm->job->name }}</td>
+              <td>{{ $sdm->user->gender }}</td>
+              <td>{{ $sdm->user->birth }}</td>
+              <td>{{ $sdm->user->address }}</td>
 
               <td>
                 {{-- <a href="{{ route('sdm.show',$iki->id) }}" type="button" class="btn btn-info">Detail</a> --}}
@@ -68,4 +74,12 @@
 
 </script>
 
+@endsection
+
+@section("script")
+<script type="text/javascript">
+  $(document).ready( function () {
+      $('#sdmTable').DataTable();
+  } );
+</script>
 @endsection

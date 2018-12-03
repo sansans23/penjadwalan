@@ -10,7 +10,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="{{ route('sdm.store') }}" method="post">
+						<form class="form-horizontal" action="{{ route('staff.store') }}" method="post">
 
 						<h3>Data Pribadi</h3>
 						<div class="form-group">
@@ -20,19 +20,7 @@
 								<input id="name" type="text" class="form-control" name="name">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="pekerjaan" class="col-md-4 control-label">Pekerjaan</label>
 
-							{{-- tampilkan list pekerjaan di sini --}}
-							<div class="col-md-6">
-								<select class="form-control" name="pekerjaan_id">
-									{{-- @foreach($job as $index=>$pkj)
-										<option value="{{$pkj->id}}">{{$pkj->name}}</option>
-									@endforeach
- --}}
-								</select>
-							</div>
-						</div>
 						<div class="form-group">
 							<label for="gender" class="col-md-4 control-label">Gender</label>
 
@@ -95,5 +83,9 @@
 </div>
 @endsection
 @section('script')
-
+<script type="text/javascript">
+	$(document).ready( function () {
+		if ( $('#birth')[0].type != 'date' ) $('#birth').datepicker();
+	} );
+</script>
 @endsection

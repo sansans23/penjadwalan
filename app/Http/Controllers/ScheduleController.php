@@ -106,7 +106,7 @@ class ScheduleController extends Controller
                 }
             }
 
-            // HariSdm::insert($insert_data);
+            HariSdm::insert($insert_data);
             $jadwal = [];
 
             foreach ($harikerja as $key => $item) { // [10]

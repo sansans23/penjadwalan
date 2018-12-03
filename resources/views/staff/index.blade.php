@@ -31,13 +31,15 @@
       </div>
       <div class="panel-body">
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="userTable">
             <thead>
               <tr>
                 <th>No.</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
+                <th>Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -47,7 +49,9 @@
                   <td>{{ $index+1 }}</td>
                   <td>{{ $ini->name }}</td>
                   <td>{{ $ini->email }}</td>
-                  <td>{{ $ini->password }}</td>
+                  <td>{{ $ini->birth }}</td>
+                  <td>{{ $ini->gender }}</td>
+                  <td>{{ $ini->address }}</td>
                   <td>
                     <button type="button" class="btn btn-info" onclick="event.preventDefault();document.getElementById('show{{$ini->id}}').submit()">Detail</button>
                     <button type="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('edit{{$ini->id}}').submit()">Edit</button>
@@ -87,5 +91,9 @@
   {{-- </div> --}}
 @endsection
 @section('script')
-
+<script type="text/javascript">
+  $(document).ready( function () {
+      $('#userTable').DataTable();
+  } );
+</script>
 @endsection

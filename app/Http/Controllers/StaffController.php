@@ -9,7 +9,7 @@ class StaffController extends Controller
 {
     public function index(){
         // $data["user"] = User::with('biodata')->get();
-        $data["user"] = User::all();
+        $data["user"] = User::where('role_id', 1)->get();
     	return view('staff.index',$data);
     }
 

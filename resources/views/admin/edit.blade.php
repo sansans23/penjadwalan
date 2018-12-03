@@ -35,7 +35,7 @@
 						<label for="birth" class="col-md-4 control-label">Birth</label>
 
 						<div class="col-md-6">
-							<input id="birth" type="date" class="form-control" name="birth">
+							<input id="birth" type="date" class="form-control" name="birth" value="{{ $user->birth }}">
 						</div>
 					</div>
 

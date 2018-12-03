@@ -49,7 +49,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="{{ url('admin') }}" class="navbar-brand" href="index.html">
-
                     <img src="{{asset('img/logo/logo1.png')}}" />
                 </a>
 
@@ -70,14 +69,19 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="{{url('admin/job')}}"  ><i class="fa fa-calendar-o"></i> Mnj.Pekerjaan </a></li>
-                            <li><a href="{{url('admin/sdm')}}"  ><i class="fa fa-users"></i> Mnj.SDM </a></li>
-                            <li><a href="{{url('admin/harikerja')}}" ><i class="fa fa-clipboard"></i> Mnj.Hari kerja </a></li>
-                            <li><a href="{{url('admin/schedule')}}" ><i class="fa fa-calendar"></i> Penjadwalan </a></li>
-                            <li><a href="{{url('admin/kehadiran')}}" ><i class="fa fa-check-square-o"></i> Kehadiran </a></li>
-                            <li><a href="{{route('gaji')}}" ><i class="fa fa-money"></i> Gaji Pekerja </a></li>
-                            {{-- <li><a href="{{url('admin/sdm')}}" ><i class="fa fa-archive"></i> Rekapitulasi </a></li> --}}
-                            <li><a href="{{url('admin/staff')}}" ><i class="fa fa-child"></i> User </a></li>
+                            @if(Auth::user()->role_id == 1)
+                                <li><a href="{{url('admin/job')}}"  ><i class="fa fa-calendar-o"></i> Mnj.Pekerjaan </a></li>
+                                <li><a href="{{url('admin/sdm')}}"  ><i class="fa fa-users"></i> Mnj.SDM </a></li>
+                                <li><a href="{{url('admin/harikerja')}}" ><i class="fa fa-clipboard"></i> Mnj.Hari kerja </a></li>
+                                <li><a href="{{url('admin/schedule')}}" ><i class="fa fa-calendar"></i> Penjadwalan </a></li>
+                                <li><a href="{{url('admin/kehadiran')}}" ><i class="fa fa-check-square-o"></i> Kehadiran </a></li>
+                                <li><a href="{{route('gaji')}}" ><i class="fa fa-money"></i> Gaji Pekerja </a></li>
+                                {{-- <li><a href="{{url('admin/sdm')}}" ><i class="fa fa-archive"></i> Rekapitulasi </a></li> --}}
+                                <li><a href="{{url('admin/staff')}}" ><i class="fa fa-child"></i> User </a></li>
+                            @elseif(Auth::user()->role_id == 2)
+                                <li><a href="{{route('employe.jadwal')}}" ><i class="fa fa-calendar"></i> Jadwal Kerja </a></li>
+                                <li><a href="{{route('employe.profile')}}" ><i class="fa fa-user"></i> Profile </a></li>
+                            @endif
                         </ul>                            <!-- /.dropdown -->
                     </div>
                 </div>

@@ -10,7 +10,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="{{ url('admin/update') }}" method="post">
+					<form class="form-horizontal" action="{{ route('sdm.update.post', ['id' => $sdm->id]) }}" method="POST">
 					<div class="form-group">
 						<label for="name" class="col-md-4 control-label">Name</label>
 
@@ -23,7 +23,11 @@
 						<label for="pekerjaan" class="col-md-4 control-label">Pekerjaan</label>
 
 						<div class="col-md-6">
-							<input id="pekerjaan_id" type="text" class="form-control" name="pekerjaan_id" value="{{ $sdm->pekerjaan_id}}">
+							<select class="form-control" name="pekerjaan_id">
+								@foreach($job as $index=>$pkj)
+									<option value="{{$pkj->id}}">{{$pkj->name}}</option>
+								@endforeach
+							</select>
 						</div>
 					</div>
 						
@@ -61,7 +65,21 @@
 							<div class="col-md-6">
 								<input id="address" type="text" class="form-control" name="address" value="{{$sdm->address}}">
 							</div>
-						</div>		
+						</div>
+						<div class="form-group">
+							<label for="kelompok_hari" class="col-md-4 control-label">Hari kerja</label>
+
+							<div class="col-md-6">
+								<select class="form-control" name="kelompok_hari">
+									<option value="1">Senin</option>
+									<option value="2">Selasa</option>
+									<option value="3">Rabu</option>
+									<option value="4">Kamis</option>
+									<option value="5">Jumat</option>
+									<option value="6">Sabtu</option>
+								</select>								
+							</div>
+						</div>
 
 						<h3>Data Login</h3>
 
@@ -77,7 +95,7 @@
 							<label for="password" class="col-md-4 control-label">Password</label>
 
 							<div class="col-md-6">
-								<input id="password" type="password" class="form-control" name="password" value="{{$sdm->password}}">
+								<input id="password" type="password" class="form-control" name="password">
 							</div>
 						</div>
 

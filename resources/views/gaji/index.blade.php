@@ -32,7 +32,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped" id="gajiTable">
 							<thead>
 								<tr>
 									<th>No</th>
@@ -72,5 +72,8 @@
 	    startView: "months", 
 	    minViewMode: "months"
 	});
+	$(document).ready( function () {
+		$('#gajiTable').DataTable();
+	} );
 </script>
 @endsection

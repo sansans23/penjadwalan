@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 Use App\User;
 use App\Biodata;
 Use App\Role;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -35,15 +35,19 @@ class AdminController extends Controller
 
     public function store(Request $request){
         // dd($request);
-        $db["user"] = User::create([
-            "role_id" => 2,
-            "name" => $request["name"],
-            "email" => $request["email"],
-            "password" => bcrypt($request["password"]),
-            "birth" => $request["birth"],
-            "address" => $request["address"],
-            "gender" => $request["gender"]
-        ]);
+        $atr = md5($request->password);
+
+        $user = new User;
+        $user->role_id = 1;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = hash('sha256', substr($atr, 0, 1).$request->password.substr($atr, -1));
+        $user->birth = $request->birth;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->photo = "0";
+        // terusin
+        $user->save();
 
         return redirect('admin/staff');
     }
@@ -62,15 +66,28 @@ class AdminController extends Controller
     }
 
     public function update(Request $request){
-        $db["user"] = User::where('id',$request["id"])->update([
-            "name"=> $request["name"],
-            "email" => $request["email"],
-            "password" => bcrypt($request["password"]),
-            "birth" => $request["birth"],
-            "address" => $request["address"],
-            "gender" => $request["gender"]
+        $rules = array(
+            'name'       => 'required',
+            'email'      => 'required|email',
+            'address' => 'required',
+            'gender' => 'required',
+            'birth' => 'required',
+            'password' => 'nullable|string|min:6',
+        );
 
-        ]);
+        $this->validate($request, $rules);
+
+        $data['email'] = $request['email'];
+        $data['address'] = $request['address'];
+        $data['gender'] = $request['gender'];
+        $data['birth'] = $request['birth'];
+
+        if (isset($request['password']) && !empty($request['password'])) {
+            $atr = md5($request['password']);
+            $data['password'] = hash('sha256', substr($atr, 0, 1).$request['password'].substr($atr, -1));
+        }
+
+        User::where('id', $request['id'])->update($data);
 
         return redirect('admin/staff');
     }

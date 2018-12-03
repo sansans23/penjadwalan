@@ -21,19 +21,6 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="pekerjaan" class="col-md-4 control-label">Pekerjaan</label>
-
-							{{-- tampilkan list pekerjaan di sini --}}
-							<div class="col-md-6">
-								<select class="form-control" name="pekerjaan_id">
-									@foreach($job as $index=>$pkj)
-										<option value="{{$pkj->id}}">{{$pkj->name}}</option>
-									@endforeach
-
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
 							<label for="gender" class="col-md-4 control-label">Gender</label>
 
 							<div class="col-md-6">

@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
+	//return hash('sha256', '123456');
     return redirect('login');
 });
 
 Auth::routes();
+
+Route::post('login', [
+  'as' => '',
+  'uses' => 'Auth\LoginController@login'
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -25,7 +31,7 @@ Route::get('checking',function(){
 			return redirect('admin');
 			break;
 		case '2':
-			return redirect('employe');
+			return redirect(route('employe.jadwal'));
 			break;
 		default:
 			return redirect('logout');
@@ -55,6 +61,7 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 		//SDM
 		Route::resource('sdm','SDMController');
 		Route::get('show','SDMController@show');
+		Route::post('sdm/update/{id}', 'SDMController@update')->name('sdm.update.post');
 
 
 		//harikerja
@@ -63,10 +70,10 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 
 		Route::group(['prefix'=>'staff'],function(){
 			Route::post('edit','AdminController@edit');
-			Route::post('update','AdminController@update');
+			Route::post('update','AdminController@update')->name('staff.update');
 			Route::post('delete','AdminController@delete');
 			Route::get('create','AdminController@create');
-			Route::post('store','AdminController@store');
+			Route::post('store','AdminController@store')->name('staff.store');
 			Route::get('show','AdminController@show');
 
 		Route::get('edit','StaffController@edit');
@@ -82,7 +89,14 @@ Route::group(['middleware'=>'UserLevel:1'],function(){
 
 Route::group(['middleware'=>'UserLevel:2'],function(){
 	Route::get('/employe','EmployeController@index');
+	// Profile
+	Route::get('/employe/profile', 'EmployeController@profile')->name('employe.profile');
+	Route::get('/employe/profile/edit', 'EmployeController@editProfile')->name('employe.profile.edit');
+	Route::post('/employe/profile/update', 'EmployeController@updateProfile')->name('employe.profile.update');
 
+	// Jadwal Kerja
+	Route::get('/employe/jadwal', 'EmployeController@jadwal')->name('employe.jadwal');
+	Route::get('/employe/jadwal/calendar', 'EmployeController@getCalendar')->name('employe.jadwal.calendar');
 
 });
 // Route::get('/create', function() {
